@@ -18,7 +18,7 @@ public class Main {
 class TestInvoked{
 
     @InvokeMethod
-    void invoked(){
+    private void invoked(){
         System.out.println("invoked method");
     }
 
@@ -56,6 +56,7 @@ class Analizator{
                 for (Method method: methods){
                     if (method.isAnnotationPresent(InvokeMethod.class)){
                         try {
+                            method.setAccessible(true);
                             method.invoke(obj);
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
